@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue 模板插值</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<style>
+    #tit{
+        color: #963852;
+    }
+</style>
+<body>
+    <div id="Application" style="text-align:center;">
+        <!--
+        v-conce 指令会让数据只插值一次 count 为0 
+        v-html  指令来插值HTML代码 v-html="html"
+        v-bind  指令绑定标签的属性值 v-bind:id
+        可以使用基本的js 表达式插值 {{count+10}}  插值只能使用单个表达式
+        -->
+        <h1 v-once>这里是模板内容：{{count}}次点击</h1>
+        <h2 v-html="str"></h2> 
+        <h3 v-bind:id="id1">{{count}}</h3>
+        <h4>{{count+10}}</h4>
+        <button v-on:click="clickButton">按钮</button>
+    </div>
+    <script>
+        const App={
+            data(){
+                return {
+                    count:0,
+                    str:"<p style='color:#aaa;'>0</p>",
+                    id1:"tit"
+                }
+            },
+            methods:{
+                clickButton(){
+                    this.count=this.count+1
+                }
+            }
+        }
+        Vue.createApp(App).mount("#Application");
+    </script>
+</body>
+</html>

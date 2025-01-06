@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>模板指令</title>
+    <script src='https://unpkg.com/vue'></script>
+</head>
+<style>
+    #tit{
+         color: #000;
+    }
+    .tit{
+        color: #999;
+    }
+</style>
+<body>
+    <div id='Application'>
+        <!--
+            v-if  设置为布尔值true时，当前元素才会被渲染。
+            对于可以添加参数的指令，参数和指令使用冒号进行分隔: v-bind:style  v-on:click
+            参数后面还可以添加修饰符，修饰符可以为指令添加额外的功能  比如 去除首尾空格 v-moel.trim="con"
+            常用的缩写： v-bind:id="id" 写成 :id="id"  v-on:click="myFunc" 写成 @click="myFunc"
+            
+        -->
+        <h1 :[prop]="name" v-if="show">标题</h1>
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    show:true,
+                    prop:"class",
+                    name:"tit"
+                }
+            },
+            methods: {
+            }
+        }
+        Vue.createApp(App).mount('#Application')
+    </script>
+</body>
+
+</html>

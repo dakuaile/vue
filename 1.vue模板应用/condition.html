@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>条件渲染</title>
+    <script src='https://unpkg.com/vue'></script>
+</head>
+<style>
+</style>
+
+<body>
+    <div id='Application'>
+        <!--
+           在将v-if与v-else结合使用时，设置了v-else指令的元素必须紧跟在v-if或v-else-if指令指定的元素后面，否则不会被识别。
+           v-else-if="" 实现多个分支渲染逻辑
+           v-if指令必须加到一个html标签上，如果我们需要使用条件同时控制多个标签元素的渲染，推荐使用template标签对元素进行分组
+           v-show指令的渲染逻辑只是一种视觉上的条件渲染，无论指令设置的条件是真是假，当前元素都会被渲染。 css 中的 display 属性
+        -->
+        <h1 v-if="show">标题</h1>
+        <p v-else>如果不显示标题就显示段落</p>
+
+        <h1 v-if="mark == 100">满分</h1>
+        <h1 v-else-if="mark > 60">及格</h1>
+        <h1 v-else>不及格</h1>
+
+        <template v-if="show">
+             <p>内容</p>
+             <p>内容</p>
+             <p>内容</p>
+        </template>
+
+        <h3 v-show="show">v-show标题在这里</h3>
+
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    show:true
+                }
+            },
+            methods: {
+            }
+        }
+        Vue.createApp(App).mount('#Application')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>循环渲染</title>
+    <script src='https://unpkg.com/vue'></script>
+</head>
+<style>
+</style>
+
+<body>
+    <div id='Application'>
+        <!-- 
+          v-for指令 语法格式为  item in list
+
+          v-for 也可以获得当前遍历项的索引 index, 索引的取值是从0开始的
+          
+          v-for 也可以对一个js 对象进行遍历，指令中第一个参数为对象的属性的值，第二个参数为属性的名字，第三个参数为遍历的索引,为了更好对列表项进行重用，我们可以将其key属性绑定为一个唯一值 :key="index"  v-bind:key="index"
+
+          v-for 高级用法 ：
+          push() 列表尾部追加一个元素
+          pop() 删除列表尾部的一个元素
+          shift() 列表头部插入一个元素
+          unshift() 删除列表头部的一个元素
+          splice() 对列表进行分割操作
+          sort() 对列表进行排序操作
+          reverse() 对列表进行逆序
+
+          v-for 支持在渲染前对数据进行额外处理
+
+          v-for 当需要渲染多个元素时，也是使用template标签进行包装
+        -->
+        <ul>
+            <li v-for="(item,index) in fun(list)">
+                <p>{{index}}{{item.name}}</p>
+                <p>{{item.num}}</p>
+            </li>
+        </ul>
+        <div>
+            <template v-for="(value,key,index) in person" :key="index">
+               <p>{{key}}:</p>
+               <p>{{value}}</p> 
+            </template>
+        </div>
+
+        <button @click="click">逆序</button>
+       
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    list:[
+                        {
+                            name:"a",
+                            num:"135537845"
+                        },
+                        {
+                            name:"b",
+                            num:"135b3784d"
+                        },
+                        {
+                            name:"c",
+                            num:"13d53d845"
+                        },
+                    ],
+                    person:{
+                         name:'abv',
+                         age:'10',
+                         num:'908676'
+                    }
+                }
+            },
+            methods: {
+                click(){
+                    this.list.reverse()
+                },
+                fun(l){
+                    return l.filter(obj=>obj.name!="a")
+                }
+            }
+        }
+        Vue.createApp(App).mount('#Application')
+    </script>
+</body>
+
+</html>
