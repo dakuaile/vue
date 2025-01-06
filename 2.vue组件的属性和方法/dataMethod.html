@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>属性与方法基础</title>
+    <script src='https://unpkg.com/vue'></script>
+</head>
+<style>
+</style>
+
+<body>
+    <div id='Application'>
+
+
+    <!--
+       vue组件定义的属性数据，我们可以直接用组件来调用，
+       计算属性定义在 computed 选项中，使用时我们可以像普通属性那样访问它。
+       根据是否缓存这一标准来选择使用计算属性或函数
+       
+    -->
+
+     <div>{{type}}</div>
+     <button @click="add">Add</button>
+
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    count: 0,
+                }
+            },
+            computed: {
+                type() {
+                    return this.count > 10 ? "大" : "小"
+                }
+            },
+            methods: {
+                add() {
+                    this.count++
+                }
+            }
+        }
+
+        let instance = Vue.createApp(App).mount('#Application')
+        console.log(instance.count)
+        instance.add()
+        console.log(instance.type)
+    </script>
+</body>
+
+</html>
